@@ -1,8 +1,9 @@
-module.exports = {
-  arrowParens: 'avoid',
-  bracketSameLine: true,
-  bracketSpacing: false,
-  singleQuote: true,
-  trailingComma: 'all',
-  tabWidth: 2,
-};
+{
+  "arrowParens": "avoid",
+  "bracketSameLine": true,
+  "bracketSpacing": false,
+  "requirePragma": true,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "endOfLine": "lf"
+}
