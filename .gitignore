@@ -61,3 +61,18 @@ yarn-error.log
 
 # Temporary files created by Metro to check the health of the file watcher
 .metro-health-check*
+
+.expo/*
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+android/
+*.orig.*
+web-build/
+android/
+web-report/
+# macOS
+.DS_Store
