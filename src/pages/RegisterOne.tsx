@@ -4,7 +4,6 @@ import {TextInput} from 'react-native-gesture-handler';
 import {BG} from '../assets/img';
 import {MyButton} from '../components';
 
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const RegisterOne = () => {
   return (
