@@ -1,33 +1,34 @@
-import React, {useEffect, useState} from 'react';
-import {ImageBackground, StyleSheet, View} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import * as Progress from 'react-native-progress';
-import {BG} from '../assets/img/';
 import Logo from '../components/Logo';
+import { Icon } from '../components';
 
-const Splash = ({navigation}: any) => {
+const Splash = ({ navigation }: any) => {
   const [loading, setLoading] = useState<number>(0.1);
 
   useEffect(() => {
     setTimeout(() => setLoading(loading + 0.2), 1000);
     if (loading >= 1) {
-      navigation.navigate('Login');
+      // navigation.navigate('Login');
     }
   });
 
   return (
     <View style={[styles.container]}>
-      <ImageBackground source={BG} resizeMode="cover" style={styles.bg}>
-        <Logo />
-        <View>
+      <View style={styles.bg}>
+        <Icon name="wallet-plus-outline" size={60} color="#fff" />
           <Progress.Bar
             progress={loading}
             width={200}
             style={[styles.progress]}
-            borderColor={'#15BE77'}
-            color={'#53E88B'}
+            borderColor={'#000'}
+            color={'#fff'}
           />
-        </View>
-      </ImageBackground>
+        <Text style={styles.text}>
+          Ví tiền Trầm Minh Nhựt
+        </Text>
+      </View>
     </View>
   );
 };
@@ -37,7 +38,7 @@ export default Splash;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#8E6BEE',
   },
   bg: {
     alignItems: 'center',
@@ -47,5 +48,11 @@ const styles = StyleSheet.create({
   },
   progress: {
     marginTop: 10,
+    marginBottom: 10
+  },
+  text: {
+    fontWeight: '700',
+    fontSize: 16,
+    color: '#FFFFFF',
   },
 });

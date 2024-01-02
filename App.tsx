@@ -1,22 +1,19 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import { NavigationContainer } from "@react-navigation/native";
 
-import MainNavigator from './src/routes/MainNavigator';
-import 'react-native-gesture-handler';
+import Provider from './src/config/provider';
+import Toast from 'react-native-toast-message';
+import AppNavigator from './src/pages/AppNavigator';
 
 function App(): JSX.Element {
   return (
-    <SafeAreaView style={styles.appContainer}>
-      <MainNavigator />
-    </SafeAreaView>
+    <NavigationContainer>
+      <Provider>
+        <AppNavigator />
+      </Provider>
+      <Toast />
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  appContainer: {
-    flex: 1,
-  },
-});
 
 export default App;
