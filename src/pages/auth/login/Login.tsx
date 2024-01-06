@@ -1,137 +1,62 @@
-import React from 'react';
-import { ImageBackground, StyleSheet, Text, View } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
-import { BG } from '../../../assets/img';
-import { MyButton } from '../../../components';
-import Logo from '../../../components/Logo';
+import React, { useCallback, useState } from "react";
+import { StyleSheet, View } from "react-native";
 
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { StackActions } from '@react-navigation/native';
+import { StackActions } from "@react-navigation/native";
+import { Button, CheckBox, Icon, Input, Text } from "@/components";
+import tw, { colors } from "@/utils/tailwind";
 
 const Login = ({ navigation }: any) => {
-  const change = () => {
-    navigation.dispatch(StackActions.replace('Register'));
+  const [isCheckBox, setIsCheckBox] = useState(false);
+  const handleLoginPress = () => {
+    navigation.dispatch(StackActions.replace("Register"));
   };
 
+  const handleRememberMePress = useCallback(() => {
+    setIsCheckBox((pre) => !pre);
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <ImageBackground source={BG} resizeMode="cover" style={styles.bg}>
-        <Logo />
-        <Text
-          style={[
-            styles.text,
-            { fontSize: 26, lineHeight: 70, marginBottom: 10 },
-          ]}>
-          Đăng nhập
-        </Text>
+    <View style={tw`flex-1 border border-red-500 p-5`}>
+      <Icon name="bank" size={100} color={colors.violet[500]} style={tw`mt-10 self-center`} />
+      <Text style={tw`mb-4 mt-6 self-center text-lg font-bold`}>Trầm Minh Nhựt</Text>
 
-        <View style={styles.formInput}>
-          <TextInput style={styles.input} placeholder="Email" />
-          <TextInput style={styles.input} placeholder="Password" />
-        </View>
-        <Text style={[styles.text, { fontSize: 15, lineHeight: 60 }]}>
-          Hoặc
-        </Text>
+      <View style={tw`flex flex-col gap-4 rounded-3xl bg-white/80 px-4 py-6`}>
+        <Input placeholder="Tài khoản" cursorColor={colors.violet[500]} placeholderTextColor={colors.violet[500]} />
 
-        <View style={[styles.fbOrGoogle]}>
-          <View style={[styles.fb]}>
-            <Icon
-              name="facebook"
-              size={35}
-              color="#000"
-              style={{ paddingRight: 2 }}
-            />
-            <Text style={[styles.text, { fontSize: 18 }]}> Facebook</Text>
+        <Input placeholder="Mật khẩu" cursorColor={colors.violet[500]} placeholderTextColor={colors.violet[500]} />
+
+        <Icon name="swap-vertical" size={28} color={colors.violet[500]} style={tw`self-center`} />
+
+        <Input
+          placeholder="Số điện thoại"
+          cursorColor={colors.violet[500]}
+          placeholderTextColor={colors.violet[500]}
+          keyboardType="numeric"
+        />
+
+        <CheckBox
+          checked={isCheckBox}
+          onPress={handleRememberMePress}
+          title="Lưu thông tin đăng nhập"
+          checkedColor={colors.violet[500]}
+        />
+
+        <Button title="Đăng nhập" onPress={handleLoginPress} color={colors.violet[500]} buttonStyle={tw`m-4`} />
+
+        <View style={tw`flex-row justify-between `}>
+          <View style={tw`flex-row`}>
+            <Text style={tw`text-lg text-violet-500`}>Quên mật khẩu </Text>
+            <Icon name="lock-reset" size={28} color={colors.violet[500]} />
           </View>
-          <View style={[styles.google]}>
-            <View style={[styles.googleIcon]}>
-              <Icon name="google" size={30} color="#fff" />
-            </View>
-            <Text style={[styles.text, { fontSize: 18 }]}> Google</Text>
+
+          <View style={tw`flex-row`}>
+            <Text style={tw`text-lg text-violet-500`}>Đăng ký </Text>
+            <Icon name="account-plus-outline" size={28} color={colors.violet[500]} />
           </View>
         </View>
-
-        <Text
-          style={[
-            styles.text,
-            { fontSize: 18, color: '#53E88B', lineHeight: 60 },
-          ]}>
-          Forgot Your Password?
-        </Text>
-
-        <View style={styles.btn}>
-          <MyButton title="Login" onPress={change} />
-        </View>
-      </ImageBackground>
+      </View>
     </View>
   );
 };
 
 export default Login;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  bg: {
-    alignItems: 'center',
-    paddingTop: 20,
-    flex: 1,
-    height: '100%',
-  },
-  text: {
-    color: '#09051C',
-    fontFamily: 'BentonSans Bold',
-    fontSize: 26,
-    textAlign: 'center',
-  },
-  formInput: {
-    justifyContent: 'space-between',
-    flexDirection: 'column',
-    width: 300,
-    height: 120,
-  },
-  input: {
-    paddingLeft: 14,
-    height: 52,
-    borderWidth: 1.4,
-    borderRadius: 14,
-    borderColor: '#9CAA9D',
-  },
-  fbOrGoogle: {
-    flexDirection: 'row',
-    width: 300,
-    justifyContent: 'space-between',
-  },
-  fb: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    width: 145,
-    height: 60,
-    borderWidth: 1.4,
-    borderRadius: 14,
-    borderColor: '#9CAA9D',
-  },
-  google: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    width: 145,
-    height: 60,
-    borderWidth: 1.4,
-    borderRadius: 14,
-    borderColor: '#9CAA9D',
-  },
-  googleIcon: {
-    marginRight: 4,
-    borderRadius: 50,
-    borderWidth: 1.4,
-    backgroundColor: '#000',
-  },
-  btn: {
-    flex: 0.6,
-    justifyContent: 'flex-end',
-  },
-});
