@@ -1,15 +1,20 @@
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 import React, { useCallback, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
-import { StackActions } from "@react-navigation/native";
 import { Button, CheckBox, Icon, Input, Text } from "@/components";
+import { HOME_NAVIGATOR } from "@/constants/screens";
+import { AppStackNavigationParamList } from "@/pages/AppNavigator";
 import tw, { colors } from "@/utils/tailwind";
 
-const Login = ({ navigation }: any) => {
+const Login = () => {
+  const navigation = useNavigation<StackNavigationProp<AppStackNavigationParamList>>();
   const [isCheckBox, setIsCheckBox] = useState(false);
-  const handleLoginPress = () => {
-    navigation.dispatch(StackActions.replace("Register"));
-  };
+
+  const handleLoginPress = useCallback(() => {
+    navigation.replace(HOME_NAVIGATOR);
+  }, [navigation]);
 
   const handleRememberMePress = useCallback(() => {
     setIsCheckBox((pre) => !pre);
