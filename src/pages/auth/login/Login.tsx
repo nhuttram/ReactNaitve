@@ -4,8 +4,8 @@ import React, { useCallback, useState } from "react";
 import { View } from "react-native";
 
 import { Button, CheckBox, Icon, Input, Text } from "@/components";
-import { HOME_NAVIGATOR } from "@/constants/screens";
-import { AppStackNavigationParamList } from "@/pages/AppNavigator";
+import { MAIN_NAVIGATOR } from "@/constants/screens";
+import { AppStackNavigationParamList } from "@/pages/navigator";
 import tw, { colors } from "@/utils/tailwind";
 
 const Login = () => {
@@ -13,7 +13,7 @@ const Login = () => {
   const [isCheckBox, setIsCheckBox] = useState(false);
 
   const handleLoginPress = useCallback(() => {
-    navigation.replace(HOME_NAVIGATOR);
+    navigation.replace(MAIN_NAVIGATOR);
   }, [navigation]);
 
   const handleRememberMePress = useCallback(() => {
